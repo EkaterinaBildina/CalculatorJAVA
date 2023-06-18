@@ -59,10 +59,12 @@ public class ViewCalculator {
 
 
     private ComplexNumber promptComplexNum() {
-        String input = getString();
+        System.out.println("\n Please input argument: ");
+        String input = scanner.nextLine();
         while (!input.matches("^\\d+\\+\\d+i$")) {
             System.out.print(input + " mistake of complex number input");
-            getString();
+            System.out.println("\n Please input argument: ");
+            input = scanner.nextLine();
         }
         String[] arrayStr = input.split("\\+");
         String a = arrayStr[0];
@@ -70,9 +72,4 @@ public class ViewCalculator {
         return new ComplexNumber(Integer.parseInt(a), Integer.parseInt(b));
     }
 
-    private String getString() {
-        System.out.println("\n Please input argument: ");
-        String input = scanner.nextLine();
-        return input;
-    }
-}
+   }
