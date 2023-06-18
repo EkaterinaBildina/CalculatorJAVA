@@ -12,4 +12,6 @@ public interface MethodOfCalculable {
     void division(ComplexNumber arg);
 
     ComplexNumber getResult();
+
+    MethodOfCalculable create(ComplexNumber arg);
 }
