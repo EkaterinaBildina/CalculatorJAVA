@@ -1,10 +1,15 @@
 package internalToDo;
 
-public interface MethodOfCalculable {
-    MethodOfCalculable sum(ComplexNumber arg);
-    MethodOfCalculable subtraction(ComplexNumber arg);
+import complexNumActivation.ComplexNumber;
 
-    MethodOfCalculable multiplication(ComplexNumber arg);
+public interface MethodOfCalculable {
+    void sum(ComplexNumber arg);
+
+    void subtraction(ComplexNumber arg);
+
+    void multiplication(ComplexNumber arg);
+
+    void division(ComplexNumber arg);
 
     ComplexNumber getResult();
 }
