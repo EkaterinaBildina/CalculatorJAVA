@@ -6,12 +6,15 @@ import java.util.Scanner;
 public class ViewCalculator {
 
 
+    public ViewCalculator() {
+        this.newCalculator = newCalculator;
+
+    }
+
     private MethodOfCalculable newCalculator;
     private Scanner scanner = new Scanner(System.in);
 
-    public ViewCalculator() {
-        this.newCalculator = newCalculator;
-    }
+
 
     private String prompt(String message) {
         Scanner in = new Scanner(System.in);
@@ -45,7 +48,7 @@ public class ViewCalculator {
                     System.out.println("Result: " + calculator.getResult());
                     break;
             }
-            String cmd = prompt("Need to continue (Y/N)?");
+            String cmd = prompt("Would you like to continue (Y/N)?");
             if (cmd.equals("Y")) {
                 continue;
             }
@@ -53,17 +56,23 @@ public class ViewCalculator {
 
         }
     }
+
+
     private ComplexNumber promptComplexNum() {
-        System.out.println("Please input argument: ");
-        String input = scanner.nextLine();
+        String input = getString();
         while (!input.matches("^\\d+\\+\\d+i$")) {
             System.out.print(input + " mistake of complex number input");
-            System.out.println("\n Please input argument: ");
-            input = scanner.nextLine();
+            getString();
         }
         String[] arrayStr = input.split("\\+");
-        String x = arrayStr[0];
-        String y = arrayStr[1].split("i")[0];
-        return new ComplexNumber(Integer.parseInt(x), Integer.parseInt(y));
+        String a = arrayStr[0];
+        String b = arrayStr[1].split("i")[0];
+        return new ComplexNumber(Integer.parseInt(a), Integer.parseInt(b));
+    }
+
+    private String getString() {
+        System.out.println("\n Please input argument: ");
+        String input = scanner.nextLine();
+        return input;
     }
 }
