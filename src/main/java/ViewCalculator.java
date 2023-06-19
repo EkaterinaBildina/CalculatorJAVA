@@ -36,42 +36,40 @@ public class ViewCalculator {
                     break;
                 case "=":
                     System.out.println("Result: " + calculator.getResult());
+                    String cmd = prompt("Would you like to continue (Y/N)?");
+                    if (cmd.equals("Y")) {
+                        calculator = newCalculator.create(promptComplexNum());
+                       // continue;
+                    }
+
                     break;
             }
-            String cmd = prompt("Would you like to continue (Y/N)?");
-            if (cmd.equals("Y")) {
-                continue;
-            }
-            break;
-
         }
     }
 
 
     private ComplexNumber promptComplexNum() {
         System.out.println("Please input argument: ");
+
         String input = scanner.nextLine();
-        String[] inputStr;
-        String a;
-        String b;
+        String[] inputStr = input.split("\\+");
+        String a = inputStr[0];
+        String b = inputStr[1].split("i")[0];
+        ComplexNumber complexNumber = new ComplexNumber(Integer.parseInt(a), Integer.parseInt(b));
+
 
         while (!input.matches("^\\d+\\+\\d+i$") && !input.matches("^\\d+\\-\\d+i$")) {
             System.out.print(input + " mistake of complex number input");
             System.out.println("\n Please try again to input the Complex number in a+bi or a-bi format: ");
             input = scanner.nextLine();
         }
-        if (input.equals("^\\d+\\+\\d+i$")) {
-            inputStr = input.split("\\+");
-            a = inputStr[0];
-            b = inputStr[1].split("i")[0];
-
-        }
-        if (input.equals("^\\d+\\-\\d+i$")) {
+        if (input.equals("^\\d+\\-\\d+i$")){
             inputStr = input.split("\\-");
             a = inputStr[0];
             b = inputStr[1].split("i")[0];
+            complexNumber =  new ComplexNumber(Integer.parseInt(a), Integer.parseInt(b));
         }
-        return new ComplexNumber(Integer.parseInt(a), Integer.parseInt(b));
+        return complexNumber;
     }
 
 
