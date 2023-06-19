@@ -1,48 +1,38 @@
 import complexNumActivation.ComplexNumber;
 import internalToDo.MethodOfCalculable;
+import preView.InterfaceNewCalculate;
+
 
 import java.util.Scanner;
 
 public class ViewCalculator {
 
-
-    public ViewCalculator() {
-        this.newCalculator = newCalculator;
-
-    }
-
-    private MethodOfCalculable newCalculator;
     private Scanner scanner = new Scanner(System.in);
+    private final InterfaceNewCalculate newCalculator;
 
-
-
-    private String prompt(String message) {
-        Scanner in = new Scanner(System.in);
-        System.out.print(message);
-        return in.nextLine();
+    public ViewCalculator(InterfaceNewCalculate newCalculator) {
+        this.newCalculator = newCalculator;
     }
-
-
 
     public void run() {
 
         MethodOfCalculable calculator = newCalculator.create(promptComplexNum());
 
         while (true) {
-            System.out.print("Available operations ( +, -, *, /, =) : ");
+            System.out.print("Please input from Available operations ( +, -, *, /, =) : ");
             String input = scanner.nextLine().toLowerCase();
             switch (input) {
                 case "+":
-                    newCalculator.sum(promptComplexNum());
+                    calculator.sum(promptComplexNum());
                     break;
                 case "-":
-                    newCalculator.subtraction(promptComplexNum());
+                    calculator.subtraction(promptComplexNum());
                     break;
                 case "*":
-                    newCalculator.multiplication(promptComplexNum());
+                    calculator.multiplication(promptComplexNum());
                     break;
                 case "/":
-                    newCalculator.division(promptComplexNum());
+                    calculator.division(promptComplexNum());
                     break;
                 case "=":
                     System.out.println("Result: " + calculator.getResult());
@@ -59,17 +49,35 @@ public class ViewCalculator {
 
 
     private ComplexNumber promptComplexNum() {
-        System.out.println("\n Please input argument: ");
+        System.out.println("Please input argument: ");
         String input = scanner.nextLine();
-        while (!input.matches("^\\d+\\+\\d+i$")) {
+        String[] inputStr;
+        String a;
+        String b;
+
+        while (!input.matches("^\\d+\\+\\d+i$") && !input.matches("^\\d+\\-\\d+i$")) {
             System.out.print(input + " mistake of complex number input");
-            System.out.println("\n Please input argument: ");
+            System.out.println("\n Please try again to input the Complex number in a+bi or a-bi format: ");
             input = scanner.nextLine();
         }
-        String[] arrayStr = input.split("\\+");
-        String a = arrayStr[0];
-        String b = arrayStr[1].split("i")[0];
+        if (input.equals("^\\d+\\+\\d+i$")) {
+            inputStr = input.split("\\+");
+            a = inputStr[0];
+            b = inputStr[1].split("i")[0];
+
+        }
+        if (input.equals("^\\d+\\-\\d+i$")) {
+            inputStr = input.split("\\-");
+            a = inputStr[0];
+            b = inputStr[1].split("i")[0];
+        }
         return new ComplexNumber(Integer.parseInt(a), Integer.parseInt(b));
     }
 
-   }
+
+    private String prompt(String message) {
+        Scanner in = new Scanner(System.in);
+        System.out.print(message);
+        return in.nextLine();
+    }
+}

@@ -1,7 +1,6 @@
-package mainToDo;
+package internalToDo;
 
 import complexNumActivation.ComplexNumber;
-import internalToDo.MethodOfCalculable;
 
 public class Calculator implements MethodOfCalculable {
 
@@ -52,11 +51,5 @@ public class Calculator implements MethodOfCalculable {
     public ComplexNumber getResult() {
         return primaryArg;
     }
-
-    @Override
-    public MethodOfCalculable create(ComplexNumber arg) {
-        return new Calculator(arg);
-    }
-
 
 }

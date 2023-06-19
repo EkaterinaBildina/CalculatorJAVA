@@ -13,5 +13,4 @@ public interface MethodOfCalculable {
 
     ComplexNumber getResult();
 
-    MethodOfCalculable create(ComplexNumber arg);
 }
