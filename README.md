@@ -1,6 +1,20 @@
 # CalculatorJAVA
 Bildina OOP (GB)
 
+2023.09.30
+HW3Calc.puml created based on SOLID.
+
+Y! Single Responsibility Principle (SRP): Убедиться, что каждый класс отвечает за одну задачу.
+
+Y!: Open/Closed Principle (OCP): Реализовать расширяемые, но закрытые для модификации компоненты.
+
+Y!: Liskov Substitution Principle (LSP): Обеспечить заменяемость объектов базового класса объектами производных классов без нарушения корректности программы.
+
+Y! Interface Segregation Principle (ISP): Использовать множество специфических интерфейсов вместо одного обобщенного.
+
+Y! Dependency Inversion Principle (DIP): Реализовать обратные зависимости — высокоуровневые модули не должны зависеть от низкоуровневых.
+
+
 2023.06.18 start date
 Калькулятор для комплексных чисел.
 
