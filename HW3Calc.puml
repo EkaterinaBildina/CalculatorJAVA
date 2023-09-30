@@ -1,0 +1,90 @@
+@startuml
+
+' SOLID: Single responsibility, Open-closed,
+'  Liskov substitution, Interface segregation и Dependency inversion.
+
+' !ДА '1. Single Responsibility Principle (SRP): Каждый класс отвечает за одну задачу.
+' !ДА '2. Open/Closed Principle (OCP): Расширяемые, но закрытые для модификации компоненты.
+' !ДА '3. Liskov Substitution Principle (LSP): Обеспечить заменяемость объектов
+'   базового класса объектами производных классов без нарушения корректности программы.
+' !ДА '4. Interface Segregation Principle (ISP): Использовать множество специфических интерфейсов
+'    вместо одного обобщенного.
+' !ДА '5. Dependency Inversion Principle (DIP): Реализовать обратные зависимости — высокоуровневые
+'   модули не должны зависеть от низкоуровневых.
+
+
+' Определяет поведение операций '+, -, *, /, =' по запросу от пользователя 'scanner'
+' В методе реализован Интерфейс, который отвечает за создание нового объекта
+class ViewCalculator {
+- Scanner scanner
+- InterfaceNewCalculate newCalculator
++ void run()
+- ComplexNumber promptComplexNum()
+- String prompt(String)
+}
+
+' вводные данные, необходимые для выполнения операции
+' класс отвечает только за определение введенных данных
+' введенные данные a и b с типом private, что обеспечивает - Расширяемые, но закрытые для модификации компоненты
+class complexNumActivation.ComplexNumber {
+- int a
+- int b
++ int getA()
++ void setA(int)
++ int getB()
++ void setB(int)
++ String toString()
+}
+
+
+' Создание объекта Calculator
+' Запуск Calculator.run
+class Main {
++ {static} void main(String[])
+}
+
+' описывает поведение каждой из операций
+' использует интерфейс MethodOfCalculable
+class internalToDo.Calculator {
+- ComplexNumber primaryArg
++ void sum(ComplexNumber)
++ void subtraction(ComplexNumber)
++ void multiplication(ComplexNumber)
++ void division(ComplexNumber)
++ ComplexNumber getResult()
+}
+
+' интерфейс методов выполнения операций '+, -, *, /, ='
+
+interface internalToDo.MethodOfCalculable {
+~ void sum(ComplexNumber)
+~ void subtraction(ComplexNumber)
+~ void multiplication(ComplexNumber)
+~ void division(ComplexNumber)
+~ ComplexNumber getResult()
+}
+
+' Интерфейс отвечает за создание аргумента
+interface preView.InterfaceNewCalculate {
+~ MethodOfCalculable create(ComplexNumber)
+}
+
+' создает новый калькулятор
+' имплементирован интерфейс введенного значения
+class preView.NewCalculate {
++ MethodOfCalculable create(ComplexNumber)
+}
+
+
+internalToDo.MethodOfCalculable <|.. internalToDo.Calculator : implements
+preView.InterfaceNewCalculate <|.. preView.NewCalculate : implements
+
+'  высокоуровневые модули не должны зависеть от низкоуровневых:
+internalToDo.Calculator <|-- ComplexNumber
+Main --> ViewCalculator: create new
+' Один калькулятор может принимать до 2  аргументов '+, -, *, /, ='
+Calculator "1" *-- "1..2" MethodOfCalculable
+
+
+
+@enduml
